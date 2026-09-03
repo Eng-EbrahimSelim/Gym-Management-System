@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Gym_Management_System.Models.GymClass>
+
+@{
+    ViewData["Title"] = "Gym Classes";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h1>Gym Classes</h1>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-controller="GymClass"
+           asp-action="Create"
+           class="btn btn-primary">
+            Add Gym Class
+        </a>
+    }
+
+</div>
+
+<!-- Trainer Dropdown -->
+
+<div class="mb-4">
+
+    <label class="form-label">
+        Filter by Trainer
+    </label>
+
+    <select id="TrainerSelect" class="form-select"
+            asp-items="ViewBag.Trainers"
+           >
+
+        <option value="">All Trainers</option>
+
+    </select>
+
+</div>
+
+
+<!-- Partial View will be loaded here -->
+
+<div id="gymClassesContainer">
+
+    <partial name="_GymClasses" model="Model" />
+
+</div>
+
+
+@section Scripts
+{
+    <script src="~/js/GymClassesList.js"></script>
+
+  
+}

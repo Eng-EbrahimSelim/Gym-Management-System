@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Gym_Management_System.Models.Trainer>
+
+@{
+    ViewData["Title"] = "Trainers";
+}
+
+<h1>Trainers</h1>
+
+<a asp-action="Create"
+   class="btn btn-primary mb-3">
+    Add Trainer
+</a>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Specialization</th>
+            <th>Admin</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var trainer in Model)
+        {
+            <tr>
+
+                <td>@trainer.Id</td>
+
+                <td>@trainer.Name</td>
+
+                <td>@trainer.Email</td>
+
+                <td>@trainer.Specialization</td>
+
+                <td>
+                    @if (trainer.IsAdmin)
+                    {
+                        <span class="badge bg-success">
+                            Yes
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">
+                            No
+                        </span>
+                    }
+                </td>
+
+                <td>
+
+                    <a asp-action="Details"
+                       asp-route-id="@trainer.Id"
+                       class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@trainer.Id"
+                       class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@trainer.Id"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Are you sure?');">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

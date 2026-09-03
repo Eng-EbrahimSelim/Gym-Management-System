@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Gym_Management_System.Models.Member>
+
+@{
+    ViewData["Title"] = "Members";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h1>Members</h1>
+
+    <div>
+        <a asp-controller="Member"
+           asp-action="EnrollInClass"
+           class="btn btn-success me-2">
+            Enroll Member In Class
+        </a>
+
+        <a asp-action="Create"
+           class="btn btn-primary">
+            Add Member
+        </a>
+    </div>
+
+</div>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var member in Model)
+        {
+            <tr>
+                <td>@member.Id</td>
+                <td>@member.Name</td>
+                <td>@member.Email</td>
+                <td>@member.Phone</td>
+
+                <td>
+                    <a asp-action="Details"
+                       asp-route-id="@member.Id"
+                       class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@member.Id"
+                       class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@member.Id"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Are you sure?');">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

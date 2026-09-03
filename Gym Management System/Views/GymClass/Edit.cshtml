@@ -1,0 +1,85 @@
+﻿@model Gym_Management_System.ViewModels.GymClassWithListOfTrainers
+
+@{
+    ViewData["Title"] = "Edit Gym Class";
+}
+
+<h1>Edit Gym Class</h1>
+
+<form asp-action="Edit" method="post">
+
+    <input asp-for="Id" type="hidden" />
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+
+        <input asp-for="Name"
+               class="form-control" />
+
+        <span asp-validation-for="Name"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description"
+               class="form-label"></label>
+
+        <textarea asp-for="Description"
+                  class="form-control"></textarea>
+
+        <span asp-validation-for="Description"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Schedule"
+               class="form-label"></label>
+
+        <input asp-for="Schedule"
+               class="form-control" />
+
+        <span asp-validation-for="Schedule"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TrainerId"
+               class="form-label">
+            Trainer
+        </label>
+
+        <select asp-for="TrainerId"
+                class="form-select">
+
+            <option value="">-- Select Trainer --</option>
+
+            @foreach (var trainer in Model.Trainers)
+            {
+                <option value="@trainer.Id">
+                    @trainer.Name
+                </option>
+            }
+
+        </select>
+
+        <span asp-validation-for="TrainerId"
+              class="text-danger"></span>
+    </div>
+
+    <button type="submit"
+            class="btn btn-success">
+        Save Changes
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Back
+    </a>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

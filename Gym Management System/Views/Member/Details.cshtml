@@ -1,0 +1,66 @@
+﻿@model Gym_Management_System.ViewModels.MemberWithListOfGymClassesEnrolledIn
+
+@{
+    ViewData["Title"] = "Member Details";
+}
+
+<h1>Member Details</h1>
+
+<div class="card mb-4">
+    <div class="card-body">
+
+        <h3>@Model.Name</h3>
+
+        <p>
+            <strong>Email:</strong>
+            @Model.Email
+        </p>
+
+        <p>
+            <strong>Phone:</strong>
+            @Model.Phone
+        </p>
+
+    </div>
+</div>
+
+<h3>Enrolled Gym Classes</h3>
+
+@if (Model.GymClasses.Any())
+{
+    <table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th>Class Name</th>
+                <th>Description</th>
+                <th>Schedule</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var gymClass in Model.GymClasses)
+            {
+                <tr>
+                    <td>@gymClass.Name</td>
+                    <td>@gymClass.Description</td>
+                    <td>@gymClass.Schedule</td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        This member is not enrolled in any gym class.
+    </div>
+}
+
+<a asp-action="Index"
+   class="btn btn-secondary">
+    Back
+</a>

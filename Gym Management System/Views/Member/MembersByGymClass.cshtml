@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Gym_Management_System.Models.Member>
+
+@{
+    ViewData["Title"] = "Members By Gym Class";
+}
+
+<h1>Members</h1>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var member in Model)
+        {
+            <tr>
+                <td>@member.Id</td>
+                <td>@member.Name</td>
+                <td>@member.Email</td>
+                <td>@member.Phone</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<a asp-controller="GymClass"
+   asp-action="Details"
+   asp-route-id="@ViewBag.ClassId"
+   class="btn btn-secondary">
+    Back
+</a>

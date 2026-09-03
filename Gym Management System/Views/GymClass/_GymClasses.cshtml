@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Gym_Management_System.Models.GymClass>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Schedule</th>
+                <th>Trainer</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var gymClass in Model)
+            {
+                <tr>
+                    <td>@gymClass.Id</td>
+                    <td>@gymClass.Name</td>
+                    <td>@gymClass.Description</td>
+                    <td>@gymClass.Schedule</td>
+                    <td>@gymClass.Trainer?.Name</td>
+
+                    <td>
+                        <a asp-action="Details"
+                           asp-route-id="@gymClass.Id"
+                           class="btn btn-info btn-sm">
+                            Details
+                        </a>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit"
+                               asp-route-id="@gymClass.Id"
+                               class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
+
+                            <a asp-action="Delete"
+                               asp-route-id="@gymClass.Id"
+                               class="btn btn-danger btn-sm">
+                                Delete
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">
+        No gym classes found for this trainer.
+    </div>
+}

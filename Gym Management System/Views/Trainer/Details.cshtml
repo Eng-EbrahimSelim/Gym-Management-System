@@ -1,0 +1,70 @@
+﻿@model Gym_Management_System.Models.Trainer
+
+@{
+    ViewData["Title"] = "Trainer Details";
+}
+
+<h1>Trainer Details</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <h3>@Model.Name</h3>
+
+        <p>
+            <strong>Email:</strong>
+            @Model.Email
+        </p>
+
+        <p>
+            <strong>Specialization:</strong>
+            @Model.Specialization
+        </p>
+
+        <p>
+            <strong>Admin:</strong>
+            @(Model.IsAdmin ? "Yes" : "No")
+        </p>
+
+        <hr />
+
+        <h4>Gym Classes</h4>
+
+        @if (ViewBag.GymClasses != null && ViewBag.GymClasses.Count > 0)
+        {
+            <ul class="list-group">
+
+                @foreach (var gymClass in ViewBag.GymClasses)
+                {
+                    <li class="list-group-item">
+                        @gymClass.Name
+                        - @gymClass.Schedule
+                    </li>
+                }
+
+            </ul>
+        }
+        else
+        {
+            <p class="text-muted">
+                This trainer has no gym classes.
+            </p>
+        }
+
+        <br />
+
+        <a asp-action="Edit"
+           asp-route-id="@Model.Id"
+           class="btn btn-warning">
+            Edit
+        </a>
+
+        <a asp-action="Index"
+           class="btn btn-secondary">
+            Back
+        </a>
+
+    </div>
+
+</div>

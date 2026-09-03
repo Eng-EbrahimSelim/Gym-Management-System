@@ -1,0 +1,92 @@
+﻿@model Gym_Management_System.Models.Trainer
+
+@{
+    ViewData["Title"] = "Create Trainer";
+}
+
+<h1>Create Trainer</h1>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+
+        <label asp-for="Name"
+               class="form-label"></label>
+
+        <input asp-for="Name"
+               class="form-control" />
+
+        <span asp-validation-for="Name"
+              class="text-danger"></span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Email"
+               class="form-label"></label>
+
+        <input asp-for="Email"
+               class="form-control" />
+
+        <span asp-validation-for="Email"
+              class="text-danger"></span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Password"
+               class="form-label"></label>
+
+        <input asp-for="Password"
+               type="password"
+               class="form-control" />
+
+        <span asp-validation-for="Password"
+              class="text-danger"></span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Specialization"
+               class="form-label"></label>
+
+        <input asp-for="Specialization"
+               class="form-control" />
+
+        <span asp-validation-for="Specialization"
+              class="text-danger"></span>
+
+    </div>
+
+    <div class="form-check mb-3">
+
+        <input asp-for="IsAdmin"
+               class="form-check-input" />
+
+        <label asp-for="IsAdmin"
+               class="form-check-label">
+            Is Admin
+        </label>
+
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary">
+        Create
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Back
+    </a>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
